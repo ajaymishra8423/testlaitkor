@@ -1,13 +1,17 @@
-FROM maven:3-alpine
+# use the latest node LTS release
+FROM node:carbon
+WORKDIR /usr/src/app
 
-COPY pom.xml pipeline/
+# copy package.json and package-lock.json and install packages. we do this
+# separate from the application code to better use docker's caching
+# `npm install` will be cached on future builds if only the app code changed
+COPY package*.json ./
+RUN npm install
 
-COPY src/ pipeline/src/
+# copy the app
+COPY . .
 
-WORKDIR pipeline/
+# expose port 3000 and start the app
+EXPOSE 3000
+CMD [ "npm", "start" ]
 
-RUN mvn clean install
-
-EXPOSE 8090
-
-ENTRYPOINT [ "java", "-jar", "/pipeline/target/jenkins-pipeline.jar"]
