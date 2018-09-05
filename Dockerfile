@@ -33,5 +33,6 @@ RUN chgrp -R 0 /tmp /etc/apache2 /var/run/apache2 /var/www/html && \
 	chmod -R g=u /tmp /etc/apache2 /var/run/apache2 /var/www/html
 
 COPY docker-entrypoint.sh /home/entrypoint.sh
+RUN chmod +x /home/entrypoint.sh
 
 ENTRYPOINT ["/home/entrypoint.sh"]
