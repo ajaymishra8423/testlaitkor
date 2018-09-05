@@ -7,7 +7,6 @@ pipeline {
 
                 script {
                     def customImage = docker.build("laitkorwordp:${env.BUILD_ID}")
-                    customImage.push()
                 }
             }
         }
