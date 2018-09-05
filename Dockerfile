@@ -1,5 +1,5 @@
-FROM php7.0:latest
-MAINTAINER John Fink <john.fink@gmail.com>
+FROM alpine:3.8
+MAINTAINER John Fink <ajay.mishra@laitkor.com>
 RUN apt-get update # Fri Oct 24 13:09:23 EDT 2014
 RUN apt-get -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client apache2 mysql-server  libapache2-mod-php7.0 pwgen python-setuptools vim-tiny php-mysql  php-ldap
