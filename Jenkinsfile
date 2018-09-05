@@ -1,32 +1,15 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
+        stage('Build image') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-        stage('Build') {
-       app = docker.build("laitkor/wordpress")
-       {
-         app.inside {
-            sh 'echo "Tests passed"'
-             }
-           }
-            
-        }
-      }
-    }
-  }
-}
-    
+                echo 'Starting to build docker image'
 
+                script {
+                    def customImage = docker.build("laitkorwordp:${env.BUILD_ID}")
+                    customImage.push()
+                }
+            }
+        }
+    }
+}
