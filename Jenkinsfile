@@ -15,7 +15,18 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-            }
+        stage('Build') {
+       app = docker.build("laitkor/wordpress")
+       {
+         app.inside {
+            sh 'echo "Tests passed"'
+             }
+           }
+            
         }
+      }
     }
+  }
 }
+    
+
