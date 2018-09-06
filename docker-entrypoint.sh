@@ -13,6 +13,12 @@ test -z $HTTPS_PORT || sed -i "s/Listen 443/Listen $HTTPS_PORT/" /etc/apache2/po
 
 test -z $UPLOAD_SIZE || sed -i "s/128M/$UPLOAD_SIZE/g" /var/www/html/.htaccess
 
+#Start  Docker conatninr
+
+docker stop laitkorwordp:${env.BUILD_ID}
+
+docker run -d -p 8081:80laitkorwordp:${env.BUILD_ID}
+
 # Start Apache as usual
 
 exec apache2-foreground
