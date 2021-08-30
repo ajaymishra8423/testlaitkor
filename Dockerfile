@@ -5,7 +5,7 @@ LABEL maintainer "Nazar Mokrynskyi <nazar@mokrynskyi.com>"
 
 RUN PHPMYADMIN_VERSION=4.8.3 && \
 
-# Install libbz2-dev and zlib1g-dev packages to support *.sql.bz2 and *.sql.zip compressed files during imports
+ # Install libbz2-dev and zlib1g-dev packages to support *.sql.bz2 and *.sql.zip compressed files during imports
 
 	apt-get update && \
 	apt-get install -y --no-install-recommends libbz2-dev zlib1g-dev && \
